@@ -4,23 +4,9 @@
 (function(){
     var common = {
         init:function(){
-            //调用加载中的方法
-            this.addLoading();
             //调用ajax设置的方法
             this.ajaxSetting();
-            //结束加载
-            this.loadingFinish();
-        },
-        bindEvent:function(){
-            //点击返回主页
-            $('#home').on('click',function(){
-                location.href='index.html';
-            });
-            //点击返回个人中心
-            $('#my').on('click',function(){
-                location.href='personalcenter.html';
-            })
-        },
+        }
         setData:function(name,obj){
             if(typeof obj==='object'){
                 obj=JSON.stringify(obj); //将obj转为string类型
@@ -36,28 +22,6 @@
                 data = obj;
             }
             return data;
-        },
-        //加载内容
-        addLoading:function(){
-            var html='<div id="loading" class="loadingBox">'+
-                    '<p>加载中<span id="font-str"></span></p></div>';
-            $('body').append(html);
-        },
-        //开始加载
-        loadingStart:function(){
-            $('#loading').show();
-            var Sstr=$('#font-str');
-            common.ini=setInterval(function(){
-                Sstr.append('.');
-                if(Sstr.text().length>10){
-                    Sstr.text('');
-                }
-            },50);
-        },
-        //结束加载
-        loadingFinish:function(){
-          $('#loading').hide();
-            clearInterval(common.ini);
         },
         //ajax公共设置
         ajaxSetting:function(){
